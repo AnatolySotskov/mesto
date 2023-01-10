@@ -1,0 +1,26 @@
+/* NORAMALIZE */
+@import url(../vendor/normalize.css);
+
+/* FONT */
+@import url(../vendor/fonts/fonts.css);
+
+/* BODY */
+@import url(../blocks/body/body.css);
+
+/* PAGE */
+@import url(../blocks/paga/page.css);
+
+/* LOGO */
+@import url(../blocks/logo/logo.css);
+
+/* HEADER */
+@import url(../blocks/header/header.css);
+
+/* PROFILE */
+@import url(../blocks/profile/profile.css);
+@import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/profile/__profile-info/Profile__profile-info.css);
+@import url(../blocks/profile/__title/profile__title.css);
+@import url(../blocks/profile/__subtitle/profile__subtitle.css);
+@import url(../blocks/profile/__editbotton/profile__edit-botton.css);
+@import url(../blocks/profile/__add-botton/profile__add-botton.css);
