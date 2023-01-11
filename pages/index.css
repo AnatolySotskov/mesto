@@ -20,8 +20,23 @@
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
 @import url(../blocks/profile/__profile-info/Profile__profile-info.css);
-/* @import url(../blocks/profile/__title-container/profile__title-container.css); */
+@import url(../blocks/profile/__title-container/profile__title-container.css);
 @import url(../blocks/profile/__title/profile__title.css);
 @import url(../blocks/profile/__subtitle/profile__subtitle.css);
 @import url(../blocks/profile/__editbotton/profile__edit-botton.css);
 @import url(../blocks/profile/__add-botton/profile__add-botton.css);
+
+
+/* CARDS */
+@import url(../blocks/cards/cards.css);
+
+/* CARD */
+@import url(../blocks/card/card.css);
+@import url(../blocks/card/__photo/card__photo.css);
+@import url(../blocks/card/__content/card__content.css);
+@import url(../blocks/card/__title/card__title.css);
+@import url(../blocks/card/__like/card__like.css);
+
+/* FOOTER */
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/Footer__copyright.css);
