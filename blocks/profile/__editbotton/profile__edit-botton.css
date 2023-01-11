@@ -1,0 +1,11 @@
+.profile__edit-botton {
+    width: 24px;
+    height: 24px;
+    background-image: url(../../../images/editbotton.png);
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-position: center;
+    object-fit: cover;
+    border: 1px solid #fff;
+
+}

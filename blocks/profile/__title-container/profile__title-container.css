@@ -1,0 +1,7 @@
+.profile__title-container {
+    column-gap: 19px;
+    display: grid;
+    grid-template-columns: minmax(auto, min-content) 24px;
+    grid-template-rows: max-content;
+    align-items: center;
+}

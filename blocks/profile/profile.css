@@ -1,0 +1,9 @@
+.profile {
+    width: 100%;
+    margin: 40px auto 50px;
+    padding: 0;
+    display: grid;
+    grid-template-columns: 120px minmax(auto, 550px) 150px;
+    column-gap: 30px;
+    align-items: center;
+}
