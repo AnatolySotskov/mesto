@@ -10,3 +10,17 @@
     overflow: hidden;
     max-width: 508px;
 }
+
+@media screen and (max-width: 900px) {
+    .profile__title {
+        line-height: 33px;
+        text-align: center;
+    }    
+  }
+
+  @media screen and (max-width: 320px) {
+    .profile__title {
+        font-size: 27px;
+    }    
+  }
+

@@ -6,3 +6,16 @@
     line-height: 22px;
     color: #fff;
 }
+
+@media screen and (max-width: 900px) {
+    .Footer__copyright {
+        padding-left: 27px;
+    }    
+  }
+
+  @media screen and (max-width: 320px) {
+    .Footer__copyright {
+        padding-left: 19px;
+    }    
+  }
+

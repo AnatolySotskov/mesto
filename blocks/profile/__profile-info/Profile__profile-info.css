@@ -10,3 +10,11 @@
     overflow: hidden;
     box-sizing: border-box;
 }
+
+@media screen and (max-width: 900px) {
+    .Profile__profile-info {
+        gap: 14;
+        margin: 26px auto 36px;
+    }    
+  }
+    

@@ -1,6 +1,13 @@
 .profile__title-container {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
 }
+
+@media screen and (max-width: 900px) {
+    .profile__title-container {
+        gap: 10;
+        margin: 0 auto;
+    }    
+  }
     
