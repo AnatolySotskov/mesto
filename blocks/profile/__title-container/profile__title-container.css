@@ -1,7 +1,7 @@
 .profile__title-container {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 20px;
 }
 
 @media screen and (max-width: 900px) {

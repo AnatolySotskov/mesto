@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
-    gap: 16px;
+    gap: 12px;
     max-width: 550px;
     width: 100%;
     text-overflow: ellipsis;
