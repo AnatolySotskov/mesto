@@ -10,4 +10,11 @@
         margin: 0 auto;
     }    
   }
+
+  @media screen and (max-width: 320px) {
+    .profile__title-container {
+        margin: 0 19px 0 46px;
+        gap: 11px;
+    }    
+  }
     

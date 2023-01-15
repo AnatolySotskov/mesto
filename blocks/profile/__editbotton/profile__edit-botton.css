@@ -9,3 +9,10 @@
     border: 1px solid #fff;
 
 }
+
+@media screen and (max-width: 320px) {
+    .profile__edit-botton {
+        width: 18px;
+        height: 18px;
+    }    
+  }
