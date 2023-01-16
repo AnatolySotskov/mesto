@@ -1,4 +1,4 @@
-.Footer__copyright {
+.footer__copyright {
     margin: 0;
     font-style: normal;
     font-weight: 400;
@@ -8,13 +8,13 @@
 }
 
 @media screen and (max-width: 900px) {
-    .Footer__copyright {
+    .footer__copyright {
         padding-left: 27px;
     }    
   }
 
   @media screen and (max-width: 320px) {
-    .Footer__copyright {
+    .footer__copyright {
         padding-left: 19px;
     }    
   }

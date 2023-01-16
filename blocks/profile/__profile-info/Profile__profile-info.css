@@ -1,4 +1,4 @@
-.Profile__profile-info {
+.profile__profile-info {
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
