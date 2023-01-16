@@ -18,11 +18,18 @@
     }    
   }
 
+  @media screen and (max-width: 500px) {
+    .profile {
+        margin: 0 auto 36px;
+        max-width: 282px;
+        height: 286px;
+    }    
+  }
+
+
   @media screen and (max-width: 320px) {
     .profile {
         margin: 0 19px 36px;
-        max-width: 282px;
-        height: 286px;
     }    
   }
 

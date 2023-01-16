@@ -10,11 +10,10 @@
 @media screen and (max-width: 900px) {
     .profile__title-container {
         gap: 10;
-        margin: 0 auto;
     }    
   }
 
-  @media screen and (max-width: 320px) {
+  @media screen and (max-width: 500px) {
     .profile__title-container {
         margin: 0 19px 0 46px;
         gap: 11px;

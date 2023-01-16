@@ -1,5 +1,5 @@
 let popup = document.querySelector('.popup'); //Окно попапа
-let buttonEdit = document.querySelector('.profile__edit-botton'); //Кнопка редактирования
+let buttonEdit = document.querySelector('.profile__edit-button'); //Кнопка редактирования
 let buttonClose = document.querySelector('.popup__button-close'); //Кнопка закрытия 
 let popupForm = document.querySelector('.popup__form'); // Попап форма
 let nameProfile = document.querySelector('.profile__title'); //Имя профиля
