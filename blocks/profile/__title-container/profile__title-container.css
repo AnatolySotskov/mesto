@@ -1,7 +1,7 @@
 .profile__title-container {
     display: flex;
     align-items: center;
-    gap: 18px;
+    gap: 20px;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
@@ -9,13 +9,16 @@
 
 @media screen and (max-width: 900px) {
     .profile__title-container {
-        gap: 5px;
-    }
-}
+        gap: 15px;
+        margin: 0;
+        justify-content: center;
+    }    
+  }
 
-@media screen and (max-width: 500px) {
+  @media screen and (max-width: 500px) {
     .profile__title-container {
         margin: 0 19px 0 46px;
         gap: 10px;
-    }
-}
+    }    
+  }
+    
