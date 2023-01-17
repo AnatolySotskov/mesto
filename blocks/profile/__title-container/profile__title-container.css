@@ -11,7 +11,7 @@
         justify-content: center;
         max-width: 282px;
   }
-
+   }
   @media screen and (max-width: 500px) {
     .profile__title-container {
         margin: 0 auto;
