@@ -1,0 +1,9 @@
+.card {
+    display: block;
+    background-color: #fff;
+    max-width: 282px;
+    min-height: 362px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    overflow: hidden;
+}
