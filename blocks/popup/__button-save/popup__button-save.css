@@ -10,7 +10,6 @@
     outline: none;
     border-radius: 2px;
     cursor: pointer;
-    z-index: 99;
 }
 
 .popup__button-save:hover {
