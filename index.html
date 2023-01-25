@@ -32,7 +32,7 @@
                     <img class="card__photo" src="./images/carachavsk.jpg" alt="Карачаевск">
                     <div class="card__content">
                         <h2 class="card__title">Карачаевск</h2>
-                        <button type="button" class="card__like"></button>
+                        <button type="button" class="card__like card__like_active"></button>
                     </div>
                 </div>
 
@@ -85,11 +85,16 @@
         </footer>
 
 
-        <div class="popup">
+
+
+
+
+        <!-- ПОПАП РЕДАКТИРОВАТЬ ПРОФИЛЬ -->
+        <div class="popup popup_edit">
             <div class="popup__container">
                 <button type="button" class="popup__button-close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form action="#" class="popup__form" name="profile-information">
+                <form action="#" class="popup__form popup__form popup__form_edit" name="profile-information">
                     <input type="text" name="profile-name" class="popup__input popup__input_name_profile-name"
                         placeholder="Введите имя">
                     <input type="text" name="profile-description"
@@ -98,6 +103,30 @@
                 </form>
             </div>
         </div>
+
+        <!-- ПОПАП ДОБАВЛЯНЕИЕ КАРТОЧКИ -->
+        <div class="popup popup_add">
+            <div class="popup__container">
+                <button type="button" class="popup__button-close popup__button-close_popup-add"></button>
+                <h2 class="popup__title">Новое место</h2>
+                <form action="#" class="popup__form popup__form_add" name="profile-information">
+                    <input type="text" name="photo-name" class="popup__input popup__input_name_photo-name"
+                        placeholder="Название">
+                    <input type="url" name="Url-photo"
+                        class="popup__input popup__input_name_url-photo" placeholder="Ссылка на картинку">
+                    <button type="submit" class="popup__button-save">Cоздать</button>
+                </form>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
 
     </div>
 

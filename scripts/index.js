@@ -1,14 +1,29 @@
-let popup = document.querySelector('.popup'); //Окно попапа
-let buttonEdit = document.querySelector('.profile__edit-button'); //Кнопка редактирования
-let buttonClose = document.querySelector('.popup__button-close'); //Кнопка закрытия 
-let popupForm = document.querySelector('.popup__form'); // Попап форма
-let nameProfile = document.querySelector('.profile__title'); //Имя профиля
-let statusProfile = document.querySelector('.profile__subtitle'); // Статус профиля
-let inputNameProfile = document.querySelector('.popup__input_name_profile-name'); //Имя профиля в попапа
-let inputStatusProfile = document.querySelector('.popup__input_name_profile-description'); // Статус профиля
+
+// ПЕРЕМЕННЫЕ ДЛЯ ПОПАПА РЕДАКТИРОВАНИЕ ПРОФИЛЯ // 
+const popup = document.querySelector('.popup'); //Окно попапа редактирование профиля
+const buttonEdit = document.querySelector('.profile__edit-button'); //Кнопка редактирования
+const buttonClose = document.querySelector('.popup__button-close'); //Кнопка закрытия 
+const popupForm = document.querySelector('.popup__form'); // Попап форма
+const nameProfile = document.querySelector('.profile__title'); //Имя профиля
+const statusProfile = document.querySelector('.profile__subtitle'); // Статус профиля
+const inputNameProfile = document.querySelector('.popup__input_name_profile-name'); //Имя профиля в попапа
+const inputStatusProfile = document.querySelector('.popup__input_name_profile-description'); // Статус профиля
+
+// ПЕРЕМЕННЫЕ ДЛЯ ПОПАПА ДОБАВЛЕНИЯ ФОТО В ПРОФИЛЬ // 
+const popupAdd = document.querySelector('.popup_add'); //окно добавления фото
+const popupFormAdd = document.querySelector(".popup__form_add");  //форма добавления фото
+const inputNamePhotoAdd = document.querySelector(".popup__input_name_photo-name"); //Название места
+const inputPhotoLink = document.querySelector(".popup__input_name_url-photo"); //Ссылка на фото
+const buttonAddPhoto = document.querySelector(".profile__add-button"); //Кнопка добавления фото
 
 
-// Функция открытия окна     
+// Функция открытия окна для добавления фото    
+function popupVisibleAddPhoto() {
+    popupAdd.classList.add('popup_visible'); 
+}
+
+
+// Функция открытия окна для редактирования профиля   
 function popupVisible() {
     popup.classList.add('popup_visible'); 
     inputNameProfile.value = nameProfile.textContent;
@@ -34,9 +49,7 @@ function handleFormSubmit (evt) {
 
 
 
-buttonEdit.addEventListener('click', popupVisible);  // Слушателеь кнопки ред окна   
+buttonAddPhoto.addEventListener('click', popupVisibleAddPhoto); // Слушателеь кнопки добавления фото   
+buttonEdit.addEventListener('click', popupVisible);  // Слушателеь кнопки открытия редарования профиля    
 buttonClose.addEventListener('click', popupClose);  // Слушателеь кнопки закрытия окна   
-popupForm.addEventListener('submit', handleFormSubmit); // слушатель самбита на форме
-
-
-
+popupForm.addEventListener('submit', handleFormSubmit); // слушатель самбита на форме редактирование профиля
