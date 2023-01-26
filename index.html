@@ -28,54 +28,7 @@
             </section>
 
             <section class="cards">
-                <div class="card">
-                    <img class="card__photo" src="./images/carachavsk.jpg" alt="Карачаевск">
-                    <div class="card__content">
-                        <h2 class="card__title">Карачаевск</h2>
-                        <button type="button" class="card__like card__like_active"></button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img class="card__photo" src="./images/elbrus.jpg" alt="Эльбрус">
-                    <div class="card__content">
-                        <h2 class="card__title">Гора Эльбрус</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img class="card__photo" src="./images/dombay.jpg" alt="Домбай">
-                    <div class="card__content">
-                        <h2 class="card__title">Домбай</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img class="card__photo" src="./images/djungli.jpg" alt="Джунгли">
-                    <div class="card__content">
-                        <h2 class="card__title">Джунгли</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img class="card__photo" src="./images/sahara.jpg" alt="Сахара">
-                    <div class="card__content">
-                        <h2 class="card__title">Пустыня Сахара</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </div>
-
-                <div class="card">
-                    <img class="card__photo" src="./images/ozero-verhnee-velikie-ozera.jpg" alt="Озёро">
-                    <div class="card__content">
-                        <h2 class="card__title">Великое озёро</h2>
-                        <button type="button" class="card__like"></button>
-                    </div>
-                </div>
-
+                <!-- ШАБЛОН КАРТОЧЕК ИЗ ТЕМПЛЕЙТА -->
             </section>
         </main>
 
@@ -94,7 +47,7 @@
             <div class="popup__container">
                 <button type="button" class="popup__button-close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form action="#" class="popup__form popup__form popup__form_edit" name="profile-information">
+                <form action="#" class="popup__form popup__form_type_edit" name="profile-information">
                     <input type="text" name="profile-name" class="popup__input popup__input_name_profile-name"
                         placeholder="Введите имя">
                     <input type="text" name="profile-description"
@@ -107,9 +60,9 @@
         <!-- ПОПАП ДОБАВЛЯНЕИЕ КАРТОЧКИ -->
         <div class="popup popup_add">
             <div class="popup__container">
-                <button type="button" class="popup__button-close popup__button-close_popup-add"></button>
+                <button type="button" class="popup__button-close"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <form action="#" class="popup__form popup__form_add" name="profile-information">
+                <form action="#" class="popup__form popup__form_type_add" name="profile-information">
                     <input type="text" name="photo-name" class="popup__input popup__input_name_photo-name"
                         placeholder="Название">
                     <input type="url" name="Url-photo"
@@ -118,6 +71,18 @@
                 </form>
             </div>
         </div>
+
+
+        <!-- ШАБЛОН КАРТОЧЕК -->
+        <template id="card-template">
+            <div class="card">
+                <img class="card__photo" src="#" alt="#">
+                <div class="card__content">
+                    <h2 class="card__title"></h2>
+                    <button type="button" class="card__like"></button>
+                </div>
+            </div>
+        </template>
 
 
 
@@ -130,6 +95,7 @@
 
     </div>
 
+    <script src="./scripts/cardsData.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 
