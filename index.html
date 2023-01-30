@@ -43,7 +43,7 @@
 
 
         <!-- ПОПАП РЕДАКТИРОВАТЬ ПРОФИЛЬ -->
-        <div class="popup popup_edit">
+        <div class="popup popup_type_edit">
             <div class="popup__container">
                 <button type="button" class="popup__button-close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
@@ -58,42 +58,46 @@
         </div>
 
         <!-- ПОПАП ДОБАВЛЯНЕИЕ КАРТОЧКИ -->
-        <div class="popup popup_add">
+        <div class="popup popup_type_add">
             <div class="popup__container">
                 <button type="button" class="popup__button-close"></button>
                 <h2 class="popup__title">Новое место</h2>
                 <form action="#" class="popup__form popup__form_type_add" name="profile-information">
                     <input type="text" name="photo-name" class="popup__input popup__input_name_photo-name"
                         placeholder="Название">
-                    <input type="url" name="Url-photo"
-                        class="popup__input popup__input_name_url-photo" placeholder="Ссылка на картинку">
+                    <input type="text" name="Url-photo" class="popup__input popup__input_name_url-photo"
+                        placeholder="Ссылка на картинку">
                     <button type="submit" class="popup__button-save">Cоздать</button>
                 </form>
             </div>
         </div>
 
 
-        <!-- ШАБЛОН КАРТОЧЕК -->
-        <template id="card-template">
-            <div class="card">
-                <img class="card__photo" src="#" alt="#">
-                <div class="card__content">
-                    <h2 class="card__title"></h2>
-                    <button type="button" class="card__like"></button>
-                </div>
+
+        <!-- ПОПАП ОТКРЫТИЕ КАРТОЧКИ -->
+        <div class="popup popup_type_image">
+            <div class="popup__container popup__container_type_image">
+                <img class="popup__image"
+                    src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg"
+                    alt="#">
+                <button type="button" class="popup__button-close"></button>
+                <h2 class="popup__title popup__title_type_image">safsafsaf</h2>
             </div>
-        </template>
-
-
-
-
-
-
-
-
-
+        </div>
 
     </div>
+
+    <!-- ШАБЛОН КАРТОЧЕК -->
+    <template id="card-template">
+        <div class="card">
+            <img class="card__photo" src="#" alt="#">
+            <div class="card__content">
+                <h2 class="card__title"></h2>
+                <button type="button" class="card__like"></button>
+            </div>
+            <button type="button" class="card__delete-button"></button>
+        </div>
+    </template>
 
     <script src="./scripts/cardsData.js"></script>
     <script src="./scripts/index.js"></script>
