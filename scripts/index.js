@@ -1,15 +1,14 @@
 // ПЕРЕМЕННЫЕ ДЛЯ ПОПАПА РЕДАКТИРОВАНИЕ ПРОФИЛЯ //
-const popup = document.querySelector(".popup"); //Окно попапа редактирование профиля
 const popupEdit = document.querySelector(".popup_type_edit") 
 const buttonEdit = document.querySelector(".profile__edit-button"); //Кнопка редактирования
-const popupForm = document.querySelector(".popup__form"); // Попап форма
+const profileForm = document.querySelector(".popup__form"); // Попап форма
 const nameProfile = document.querySelector(".profile__title"); //Имя профиля
 const statusProfile = document.querySelector(".profile__subtitle"); // Статус профиля
 const inputNameProfile = document.querySelector(".popup__input_name_profile-name"); //Имя профиля в попапа
 const inputStatusProfile = document.querySelector(".popup__input_name_profile-description"); // Статус профиля
 
  //Кнопка закрытия попапов
- const buttonClose = document.querySelectorAll(".popup__button-close");
+ const closeButtons = document.querySelectorAll(".popup__button-close");
 
 // ПЕРЕМЕННЫЕ ДЛЯ ПОПАПА ДОБАВЛЕНИЯ ФОТО В ПРОФИЛЬ //
 const popupAdd = document.querySelector(".popup_type_add"); //окно добавления фото
@@ -23,29 +22,29 @@ const cardTemplate = document.querySelector("#card-template").content.querySelec
 const cards = document.querySelector(".cards"); // расположение карточек
 
 // ПЕРЕМЕННЫЕ ДЛЯ ПОПАПА ОТКРЫТИЕ ФОТО
-const popupOpenImage = document.querySelector(".popup_type_image"); // Открытие картинки попапа
+const openPopupImage = document.querySelector(".popup_type_image"); // Открытие картинки попапа
 const popupImage = document.querySelector(".popup__image"); // Картинка попапа
 const popupTitleImage = document.querySelector(".popup__title_type_image"); //заголовок фото
 
 
 
 // Функция открытия окн
-function popupOpen(popup) {
+function openPopup(popup) {
     popup.classList.add("popup_visible");
 }
 
 
 // Функция закрытия окна
-function popupClose(popupName) {
+function closePopup(popupName) {
     popupName.classList.remove("popup_visible");
 }
 
 // Функция самбита на форме
-function handleFormSubmit(evt) {
+function handleProfileFormSubmit(evt) {
     evt.preventDefault();
     nameProfile.textContent = inputNameProfile.value;
     statusProfile.textContent = inputStatusProfile.value;
-    popupClose(popupEdit);
+    closePopup(popupEdit);
 }
 
 
@@ -53,7 +52,8 @@ function handleFormSubmit(evt) {
 function handleFormSubmitAdd (evt) {
     evt.preventDefault();
     cards.prepend(createCard(inputCardName.value, inputCardLink.value));
-    popupClose(popupAdd);
+    closePopup(popupAdd);
+    cardFormAdd.reset();
 }
 
 //  СОЗДАНИЕ КАРТОЧЕК / Лайка / удаление карточки
@@ -78,7 +78,7 @@ function createCard(name,link) {
         popupTitleImage.textContent = name
         popupImage.src = link
         popupImage.alt = name
-        popupOpen(popupOpenImage)
+        openPopup(openPopupImage)
     })
 
     return card
@@ -93,23 +93,23 @@ initialCards.forEach(cardData =>{
 
 
 // Слушателеь кнопки закрытия окон
-buttonClose.forEach((button) => {
+closeButtons.forEach((button) => {
     button.addEventListener("click", function(event){
-        popupClose(event.target.closest(".popup"))
+        closePopup(event.target.closest(".popup"))
     });
 });
 
 // Слушателеь кнопки добавления фото
 buttonAddPhoto.addEventListener("click", () => {
-    popupOpen(popupAdd)
+    openPopup(popupAdd)
 }); 
 
 // Слушателеь кнопки открытия редарования профиля
 buttonEdit.addEventListener("click", () => {
     inputNameProfile.value = nameProfile.textContent;
     inputStatusProfile.value = statusProfile.textContent;
-    popupOpen(popupEdit)
+    openPopup(popupEdit)
 }); 
 
-popupForm.addEventListener("submit", handleFormSubmit); // слушатель самбита на форме редактирование профиля
+profileForm.addEventListener("submit", handleProfileFormSubmit); // слушатель самбита на форме редактирование профиля
 cardFormAdd.addEventListener("submit", handleFormSubmitAdd); // слушатель самбита на форме карточки
