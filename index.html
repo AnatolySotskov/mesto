@@ -47,11 +47,18 @@
             <div class="popup__container">
                 <button type="button" class="popup__button-close"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form action="#" class="popup__form popup__form_type_edit" name="profile-information">
-                    <input type="text" name="profile-name" class="popup__input popup__input_name_profile-name"
-                        placeholder="Введите имя">
-                    <input type="text" name="profile-description"
-                        class="popup__input popup__input_name_profile-description" placeholder="Введите описание">
+                <form action="#" class="popup__form popup__form_type_edit" name="profile-information" novalidate>
+
+                    <input id="nameProfile-input" name="nameProfile" type="text"
+                        class="popup__input popup__input_name_profile-name" placeholder="Введите имя" required
+                        minlength="2" maxlength="40">
+                    <span class="popup__input-error nameProfile-input-error"></span>
+
+                    <input id="textProfile-input" name="textProfile" type="text"
+                        class="popup__input popup__input_name_profile-description" placeholder="Введите описание"
+                        required minlength="2" maxlength="200">
+                    <span class="popup__input-error textProfile-input-error"></span>
+
                     <button type="submit" class="popup__button-save">Сохранить</button>
                 </form>
             </div>
@@ -62,11 +69,16 @@
             <div class="popup__container">
                 <button type="button" class="popup__button-close"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <form action="#" class="popup__form popup__form_type_add" name="profile-information">
-                    <input type="text" name="photo-name" class="popup__input popup__input_name_photo-name"
-                        placeholder="Название">
-                    <input type="url" name="Url-photo" class="popup__input popup__input_name_url-photo"
-                        placeholder="Ссылка на картинку">
+                <form action="#" class="popup__form popup__form_type_add" name="profile-information" novalidate>
+                    <input id="nameMesto-input" name="nameMesto" type="text"
+                        class="popup__input popup__input_name_photo-name" placeholder="Название" required minlength="2"
+                        maxlength="40">
+                    <span class="popup__input-error nameMesto-input-error"></span>
+
+                    <input id="urlMesto-input" name="urlMesto" type="url"
+                        class="popup__input popup__input_name_url-photo" placeholder="Ссылка на картинку" required>
+                    <span class="popup__input-error urlMesto-input-error"></span>
+
                     <button type="submit" class="popup__button-save">Cоздать</button>
                 </form>
             </div>
@@ -100,6 +112,7 @@
     </template>
 
     <script src="./scripts/cardsData.js"></script>
+    <script src="./scripts/validate.js"></script>
     <script src="./scripts/index.js"></script>
 </body>
 

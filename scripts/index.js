@@ -26,19 +26,39 @@ const openPopupImage = document.querySelector(".popup_type_image"); // Откр�
 const popupImage = document.querySelector(".popup__image"); // Картинка попапа
 const popupTitleImage = document.querySelector(".popup__title_type_image"); //заголовок фото
 
+//Переменная оверлеев для отслеживания
+const popUps = Array.from(document.querySelectorAll('.popup'));
+
+
+//Функция закрытия попАпов на Escape
+function popUpEscClose(e) { 
+    if (e.key === "Escape") { 
+      const visiblePopUps = document.querySelector('.popup_visible');
+      closePopup(visiblePopUps)
+    }}
 
 
 // Функция открытия окн
 function openPopup(popup) {
     popup.classList.add("popup_visible");
+    document.addEventListener('keydown', popUpEscClose)
 }
-
 
 // Функция закрытия окна
 function closePopup(popupName) {
+    document.addEventListener('keydown', popUpEscClose)
     popupName.classList.remove("popup_visible");
+    
 }
 
+//Функция закртия попАпов по оверлею
+popUps.forEach(popup =>  popup.addEventListener('click', evt => {
+    if (evt.target.classList.contains('popup')){
+        closePopup(popup);
+    }
+  }))
+
+  
 // Функция самбита на форме
 function handleProfileFormSubmit(evt) {
     evt.preventDefault();
@@ -111,5 +131,10 @@ buttonEdit.addEventListener("click", () => {
     openPopup(popupEdit)
 }); 
 
+
+
+  
 profileForm.addEventListener("submit", handleProfileFormSubmit); // слушатель самбита на форме редактирование профиля
 cardFormAdd.addEventListener("submit", handleFormSubmitAdd); // слушатель самбита на форме карточки
+
+
