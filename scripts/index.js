@@ -1,6 +1,6 @@
-import { Card } from "./card.js";
+import { Card } from "./Сard.js";
 import { initialCards } from "./cardsData.js";
-import  FormValidator  from "./FormValidator.js";
+import FormValidator from "./FormValidator.js";
 
 //Настройки конструктора валидции
 const option = {
@@ -18,8 +18,12 @@ const buttonEdit = document.querySelector(".profile__edit-button"); //Кнопк
 const profileForm = document.querySelector(".popup__form"); // Попап форма
 const nameProfile = document.querySelector(".profile__title"); //Имя профиля
 const statusProfile = document.querySelector(".profile__subtitle"); // Статус профиля
-const inputNameProfile = document.querySelector(".popup__input_name_profile-name"); //Имя профиля в попапа
-const inputStatusProfile = document.querySelector(".popup__input_name_profile-description");
+const inputNameProfile = document.querySelector(
+  ".popup__input_name_profile-name"
+); //Имя профиля в попапа
+const inputStatusProfile = document.querySelector(
+  ".popup__input_name_profile-description"
+);
 const cardFormEdit = document.querySelector(".popup__form_type_edit"); // Форма добавления карточки
 
 //Кнопка закрытия попапов
@@ -33,7 +37,9 @@ const inputCardLink = document.querySelector(".popup__input_name_url-photo"); //
 const cardFormAdd = document.querySelector(".popup__form_type_add"); // Форма добавления карточки
 
 // ПЕРЕМЕННЫЕ ДЛЯ  КАРТОЧЕК
-const cardTemplate = document.querySelector("#card-template").content.querySelector(".card"); //Шаблон  карточек
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card"); //Шаблон  карточек
 const cards = document.querySelector(".cards"); // расположение карточек
 
 // // ПЕРЕМЕННЫЕ ДЛЯ ПОПАПА ОТКРЫТИЕ ФОТО
@@ -45,11 +51,11 @@ const popupTitleImage = document.querySelector(".popup__title_type_image"); //з
 const popUps = Array.from(document.querySelectorAll(".popup"));
 
 //Вызов новых валидаций
-const editValidator = new FormValidator(cardFormEdit, option);
-editValidator.enableValidation();
+const validatorEdit = new FormValidator(cardFormEdit, option);
+validatorEdit.enableValidation();
 
-const addValidator = new FormValidator(cardFormAdd, option);
-addValidator.enableValidation();
+const validatorAdd = new FormValidator(cardFormAdd, option);
+validatorAdd.enableValidation();
 
 //Функция закрытия попАпов на Escape
 function popUpEscClose(e) {
@@ -91,7 +97,9 @@ function handleProfileFormSubmit(evt) {
 // Функция самбита добавление карточки
 function handleFormSubmitAdd(evt) {
   evt.preventDefault();
-  cards.prepend(createCard(inputCardName.value, inputCardLink.value));
+  cards.prepend(
+    createCard({ name: inputCardName.value, link: inputCardLink.value })
+  );
   closePopup(popupAdd);
   cardFormAdd.reset();
 }
