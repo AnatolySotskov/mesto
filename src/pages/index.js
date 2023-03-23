@@ -60,14 +60,13 @@ function createCard(cardData) {
   return cardItem.createCard();
 }
 
-const cardSectionData = {
-  items: initialCards,
-  renderer: (item) => {
-    cards.append(createCard(item));
-  },
-};
-
-const cardSection = new Section(cardSectionData, ".cards");
+const cardSection = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      cards.append(createCard(item));
+    }
+  }, ".cards");
 cardSection.rendererItems();
 
 //Вызов новых валидаций
@@ -112,23 +111,6 @@ const popupUser = new PopupWithForm(
 );
 popupUser.setEventListeners();
 
-// Функция самбита на форме
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  nameProfile.textContent = inputNameProfile.value;
-  statusProfile.textContent = inputStatusProfile.value;
-  closePopup(popupEdit);
-}
-
-// Функция самбита добавление карточки
-function handleFormSubmitAdd(evt) {
-  evt.preventDefault();
-  cards.prepend(
-    createCard({ name: inputCardName.value, link: inputCardLink.value })
-  );
-  closePopup(popupAdd);
-  cardFormAdd.reset();
-}
 
 // Слушателеь кнопки добавления фото
 buttonAddPhoto.addEventListener("click", () => {
