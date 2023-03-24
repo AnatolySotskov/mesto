@@ -1,4 +1,4 @@
-import "./index.css"
+import "./index.css";
 import { Card } from "../components/Card.js";
 import { initialCards } from "../components/cardsData.js";
 import FormValidator from "../components/FormValidator.js";
@@ -62,12 +62,11 @@ function createCard(cardData) {
 
 const cardSection = new Section(
   {
-    items: initialCards,
-    renderer: (item) => {
-      cards.append(createCard(item));
-    }
-  }, ".cards");
-cardSection.rendererItems();
+    renderer: (item) => createCard(item),
+  },
+  ".cards"
+);
+cardSection.rendererItems(initialCards);
 
 //Вызов новых валидаций
 const validatorEdit = new FormValidator(cardFormEdit, option);
@@ -84,12 +83,10 @@ function handleCardClick(cardData) {
 }
 
 const submitAddFormHandler = (data) => {
-  cardSection.addItem(
-    createCard({
-      name: data.nameMesto,
-      link: data.urlMesto,
-    })
-  )
+  cardSection.addItem({
+    name: data.nameMesto,
+    link: data.urlMesto,
+  });
 };
 
 const popupAddCards = new PopupWithForm(
@@ -100,17 +97,12 @@ popupAddCards.setEventListeners();
 
 const userInfo = new UserInfo(".profile__title", ".profile__subtitle");
 
-
 const submitUserFormHandler = (data) => {
-  userInfo.setUserInfo(data)
-}
+  userInfo.setUserInfo(data);
+};
 
-const popupUser = new PopupWithForm(
-  ".popup_type_edit",
-  submitUserFormHandler
-);
+const popupUser = new PopupWithForm(".popup_type_edit", submitUserFormHandler);
 popupUser.setEventListeners();
-
 
 // Слушателеь кнопки добавления фото
 buttonAddPhoto.addEventListener("click", () => {
@@ -119,7 +111,6 @@ buttonAddPhoto.addEventListener("click", () => {
 
 // Слушателеь кнопки открытия редарования профиля
 buttonEdit.addEventListener("click", () => {
-  popupUser.setInputValue(userInfo.getUserInfo())
+  popupUser.setInputValue(userInfo.getUserInfo());
   popupUser.open();
 });
-
