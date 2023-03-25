@@ -62,11 +62,15 @@ function createCard(cardData) {
 
 const cardSection = new Section(
   {
-    renderer: (item) => createCard(item),
+    items: initialCards,
+    renderer: (item) => {
+      cardSection.addItem(createCard(item));
+    },
   },
   ".cards"
 );
-cardSection.rendererItems(initialCards);
+
+cardSection.rendererItems();
 
 //Вызов новых валидаций
 const validatorEdit = new FormValidator(cardFormEdit, option);
@@ -83,10 +87,10 @@ function handleCardClick(cardData) {
 }
 
 const submitAddFormHandler = (data) => {
-  cardSection.addItem({
+  cardSection.addItem(createCard({
     name: data.nameMesto,
     link: data.urlMesto,
-  });
+  }));
 };
 
 const popupAddCards = new PopupWithForm(
