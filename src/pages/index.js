@@ -17,43 +17,17 @@ const option = {
   errorClass: "popup__input-error_visible",
 };
 
-// ПЕРЕМЕННЫЕ ДЛЯ ПОПАПА РЕДАКТИРОВАНИЕ ПРОФИЛЯ //
-const popupEdit = document.querySelector(".popup_type_edit");
 const buttonEdit = document.querySelector(".profile__edit-button"); //Кнопка редактирования
-const profileForm = document.querySelector(".popup__form"); // Попап форма
-const nameProfile = document.querySelector(".profile__title"); //Имя профиля
-const statusProfile = document.querySelector(".profile__subtitle"); // Статус профиля
-const inputNameProfile = document.querySelector(
-  ".popup__input_name_profile-name"
-); //Имя профиля в попапа
-const inputStatusProfile = document.querySelector(
-  ".popup__input_name_profile-description"
-);
 const cardFormEdit = document.querySelector(".popup__form_type_edit"); // Форма добавления карточки
-
-//Кнопка закрытия попапов
-const closeButtons = document.querySelectorAll(".popup__button-close");
-
-// ПЕРЕМЕННЫЕ ДЛЯ ПОПАПА ДОБАВЛЕНИЯ ФОТО В ПРОФИЛЬ //
-const popupAdd = document.querySelector(".popup_type_add"); //окно добавления фото
 const buttonAddPhoto = document.querySelector(".profile__add-button"); //Кнопка добавления фото
-const inputCardName = document.querySelector(".popup__input_name_photo-name"); // Инпут фото карты
-const inputCardLink = document.querySelector(".popup__input_name_url-photo"); // Инпут ссылки для карточки фото
 const cardFormAdd = document.querySelector(".popup__form_type_add"); // Форма добавления карточки
 
-// ПЕРЕМЕННЫЕ ДЛЯ  КАРТОЧЕК
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card"); //Шаблон  карточек
-const cards = document.querySelector(".cards"); // расположение карточек
-
-// // ПЕРЕМЕННЫЕ ДЛЯ ПОПАПА ОТКРЫТИЕ ФОТО
-const openPopupImage = document.querySelector(".popup_type_image"); // Открытие картинки попапа
-const popupImage = document.querySelector(".popup__image"); // Картинка попапа
-const popupTitleImage = document.querySelector(".popup__title_type_image"); //заголовок фото
-
-//Переменная оверлеев для отслеживания
-const popUps = Array.from(document.querySelectorAll(".popup"));
+//переменные для редактирования аватара
+// export const popupAvatarEdit = document.querySelector('.popup_type_avatar');
+export const profileAvatar = document.querySelector(".profile__avatar");
+export const buttonAvatarEdit = document.querySelector(
+  ".profile__avatar-block"
+);
 
 function createCard(cardData) {
   const cardItem = new Card(cardData, ".card-template", handleCardClick);
@@ -87,10 +61,12 @@ function handleCardClick(cardData) {
 }
 
 const submitAddFormHandler = (data) => {
-  cardSection.addItem(createCard({
-    name: data.nameMesto,
-    link: data.urlMesto,
-  }));
+  cardSection.addItem(
+    createCard({
+      name: data.nameMesto,
+      link: data.urlMesto,
+    })
+  );
 };
 
 const popupAddCards = new PopupWithForm(
@@ -107,6 +83,34 @@ const submitUserFormHandler = (data) => {
 
 const popupUser = new PopupWithForm(".popup_type_edit", submitUserFormHandler);
 popupUser.setEventListeners();
+
+//попап изменения аватара
+const popupAvatarProfile = new PopupWithForm(
+  ".popup_type_avatar",
+  submitAvatarFormHandler
+);
+popupAvatarProfile.setEventListeners();
+
+//функция на сабмит формы смены аватара
+function submitAvatarFormHandler(evt, { avatar }) {
+  evt.preventDefault();
+  popupAvatarProfile.loadingButton(true);
+  api
+    .patchAvatar(avatar)
+    .then((data) => {
+      userinfo.setUserInfo(data);
+      popupAvatarProfile.close();
+    })
+    .catch((err) => console.log(`Ошибка изменения аватара: ${err}`))
+    .finally(() => {
+      popupAvatarProfile.loadingButton(false);
+    });
+}
+
+//слушатель на аватарке
+buttonAvatarEdit.addEventListener("click", () => {
+  popupAvatarProfile.open();
+});
 
 // Слушателеь кнопки добавления фото
 buttonAddPhoto.addEventListener("click", () => {
