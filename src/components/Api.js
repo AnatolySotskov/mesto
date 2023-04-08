@@ -1,0 +1,49 @@
+export default class Api {
+  constructor(apiSettings) {
+    this._token = apiSettings.token;
+    this._address = apiSettings.address;
+    this._headers = {
+      authorization: this._token,
+      "Content-Type": "application/json",
+    };
+  }
+
+  _handleResponse = (res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      Promise.reject(`Ошибка ${res.status}`);
+    }
+  };
+
+  getCards() {
+    return fetch(`${this._address}/cards`, {
+      headers: this._headers,
+    }).then(this._handleResponse);
+  }
+
+  getInfoUser() {
+    return fetch(`${this._address}/users/me`, {
+      headers: this._headers,
+    }).then(this._handleResponse);
+  }
+
+
+
+  patchProfile ( {name, about} ) {
+    return fetch(`${this._address}/users/me`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify({ name, about })
+    }).then(this._handleResponse)
+  }
+
+  patchAvatar(avatar) {
+    return fetch(`${this._address}/users/me/avatar`, {
+      method: "PATCH",
+      body: JSON.stringify({avatar}),
+      headers: this._headers
+    })
+    .then(this._handleResponse);
+  }
+}

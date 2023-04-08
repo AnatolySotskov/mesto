@@ -1,11 +1,12 @@
 import "./index.css";
 import { Card } from "../components/Card.js";
-import { initialCards } from "../components/cardsData.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../components/Api.js";
+import { apiSettings, profileAvatar, popupAvatarEdit, buttonAvatarEdit } from "../utils/constants.js";
 
 //Настройки конструктора валидции
 const option = {
@@ -22,12 +23,8 @@ const cardFormEdit = document.querySelector(".popup__form_type_edit"); // Фор
 const buttonAddPhoto = document.querySelector(".profile__add-button"); //Кнопка добавления фото
 const cardFormAdd = document.querySelector(".popup__form_type_add"); // Форма добавления карточки
 
-//переменные для редактирования аватара
-// export const popupAvatarEdit = document.querySelector('.popup_type_avatar');
-export const profileAvatar = document.querySelector(".profile__avatar");
-export const buttonAvatarEdit = document.querySelector(
-  ".profile__avatar-block"
-);
+
+const api = new Api(apiSettings);
 
 function createCard(cardData) {
   const cardItem = new Card(cardData, ".card-template", handleCardClick);
@@ -36,7 +33,6 @@ function createCard(cardData) {
 
 const cardSection = new Section(
   {
-    items: initialCards,
     renderer: (item) => {
       cardSection.addItem(createCard(item));
     },
@@ -44,7 +40,15 @@ const cardSection = new Section(
   ".cards"
 );
 
-cardSection.rendererItems();
+api.getCards().then((items) => {
+  cardSection.rendererItems(items)
+})
+
+api.getInfoUser().then((data) => {
+  userInfo.setUserInfo(data);
+})
+
+console.log(api.getInfoUser())
 
 //Вызов новых валидаций
 const validatorEdit = new FormValidator(cardFormEdit, option);
@@ -75,7 +79,7 @@ const popupAddCards = new PopupWithForm(
 );
 popupAddCards.setEventListeners();
 
-const userInfo = new UserInfo(".profile__title", ".profile__subtitle");
+const userInfo = new UserInfo(".profile__title", ".profile__subtitle", ".profile__avatar");
 
 const submitUserFormHandler = (data) => {
   userInfo.setUserInfo(data);
@@ -106,6 +110,9 @@ function submitAvatarFormHandler(evt, { avatar }) {
       popupAvatarProfile.loadingButton(false);
     });
 }
+
+
+
 
 //слушатель на аватарке
 buttonAvatarEdit.addEventListener("click", () => {

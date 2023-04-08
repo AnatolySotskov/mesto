@@ -4,6 +4,7 @@ export class Card {
     this._cardTemplate = cardTemplate;
     this._cardData = cardData;
     this._handleCardClick = handleCardClick;
+    this._likesCount = cardData.likes.length;
   }
 
   //Шаблон карточки
@@ -23,7 +24,8 @@ export class Card {
     this._cardTitle = this._card.querySelector(".card__title");
     this._cardLike = this._card.querySelector(".card__like");
     this._cardTrashButton = this._card.querySelector(".card__delete-button");
-
+    this._likeCount = this._card.querySelector(".card__like-count");
+    this._likeCount.textContent = this._likesCount;
     this._cardPhoto.src = this._cardData.link;
     this._cardTitle.textContent = this._cardData.name;
     this._cardPhoto.alt = this._cardData.name;
