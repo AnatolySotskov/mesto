@@ -1,10 +1,13 @@
 //Класс Card
 export class Card {
-  constructor(cardData, cardTemplate, handleCardClick) {
+  constructor(cardData, cardTemplate, handleCardClick, userId, handleLikes) {
     this._cardTemplate = cardTemplate;
     this._cardData = cardData;
     this._handleCardClick = handleCardClick;
     this._likesCount = cardData.likes.length;
+    this._isLike = cardData.likes.some(like => like._id === userId);
+    this._cardId = cardData._id;
+    this._handleLikes = handleLikes;
   }
 
   //Шаблон карточки
@@ -13,7 +16,6 @@ export class Card {
       .querySelector(this._cardTemplate)
       .content.querySelector(".card")
       .cloneNode(true);
-
     return cardElement;
   }
 
@@ -29,18 +31,37 @@ export class Card {
     this._cardPhoto.src = this._cardData.link;
     this._cardTitle.textContent = this._cardData.name;
     this._cardPhoto.alt = this._cardData.name;
+    if ( this._isLike === true) {
+      this._cardLike.classList.add("card__like_active");
+    }
     this._setEventListeners();
 
     return this._card;
+  }
+
+  updateLikes(data) {
+    if (this._isLike === true) {
+      this._cardLike.classList.remove("card__like_active");
+      this._likeCount.textContent = data.likes.length;
+      this._isLike = false;
+    }else {
+      this._cardLike.classList.add("card__like_active");
+      this._likeCount.textContent = data.likes.length;
+      this._isLike = true;
+    }
+  }
+
+  getInfo() {
+    return {cardId: this._cardId, isLike: this._isLike}
   }
 
   _handleRemoveCard() {
     this._card.remove();
   }
 
-  _handleLikeClick() {
-    this._cardLike.classList.toggle("card__like_active");
-  }
+  // _handleLikeClick() {
+  //   this._cardLike.classList.toggle("card__like_active");
+  // }
 
   _setEventListeners() {
     this._cardPhoto.addEventListener("click", () =>
@@ -51,8 +72,13 @@ export class Card {
       this._handleRemoveCard()
     );
 
+    // this._cardLike.addEventListener("click", () => {
+    //   this._handleLikeClick();
+    // });
+
     this._cardLike.addEventListener("click", () => {
-      this._handleLikeClick();
-    });
+      this._handleLikes(this)
+    })
+
   }
 }

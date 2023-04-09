@@ -7,6 +7,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../components/Api.js";
 import { apiSettings, profileAvatar, popupAvatarEdit, buttonAvatarEdit } from "../utils/constants.js";
+import { data } from "autoprefixer";
 
 //Настройки конструктора валидции
 const option = {
@@ -27,7 +28,7 @@ const cardFormAdd = document.querySelector(".popup__form_type_add"); // Форм
 const api = new Api(apiSettings);
 
 function createCard(cardData) {
-  const cardItem = new Card(cardData, ".card-template", handleCardClick);
+  const cardItem = new Card(cardData, ".card-template", handleCardClick, userInfo.getUserInfo().userId, handleLikes);
   return cardItem.createCard();
 }
 
@@ -48,7 +49,6 @@ api.getInfoUser().then((data) => {
   userInfo.setUserInfo(data);
 })
 
-console.log(api.getInfoUser())
 
 //Вызов новых валидаций
 const validatorEdit = new FormValidator(cardFormEdit, option);
@@ -64,13 +64,15 @@ function handleCardClick(cardData) {
   popupThisImages.open(cardData);
 }
 
-const submitAddFormHandler = (data) => {
-  cardSection.addItem(
-    createCard({
-      name: data.nameMesto,
-      link: data.urlMesto,
-    })
-  );
+const submitAddFormHandler = (evt, data) => {
+  evt.preventDefault();
+  api.addCard(data).then(data =>{
+    cardSection.addItem(
+      createCard(data)
+       );
+       popupAddCards.close();
+  })
+  
 };
 
 const popupAddCards = new PopupWithForm(
@@ -81,8 +83,15 @@ popupAddCards.setEventListeners();
 
 const userInfo = new UserInfo(".profile__title", ".profile__subtitle", ".profile__avatar");
 
-const submitUserFormHandler = (data) => {
-  userInfo.setUserInfo(data);
+
+
+const submitUserFormHandler = (evt, data) => {
+  evt.preventDefault();
+  api.patchProfile(data).then(data => {
+    userInfo.setUserInfo(data);
+    popupUser.close()
+  })
+  
 };
 
 const popupUser = new PopupWithForm(".popup_type_edit", submitUserFormHandler);
@@ -98,17 +107,22 @@ popupAvatarProfile.setEventListeners();
 //функция на сабмит формы смены аватара
 function submitAvatarFormHandler(evt, { avatar }) {
   evt.preventDefault();
-  popupAvatarProfile.loadingButton(true);
+  // popupAvatarProfile.loadingButton(true);
   api
     .patchAvatar(avatar)
     .then((data) => {
-      userinfo.setUserInfo(data);
+      userInfo.setUserInfo(data);
       popupAvatarProfile.close();
     })
     .catch((err) => console.log(`Ошибка изменения аватара: ${err}`))
-    .finally(() => {
-      popupAvatarProfile.loadingButton(false);
-    });
+    // .finally(() => {
+    //   popupAvatarProfile.loadingButton(false);
+    // });
+}
+
+
+function handleLikes(card) {
+  api.toggleLike(card.getInfo()).then(res => card.updateLikes(res))
 }
 
 

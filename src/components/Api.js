@@ -46,4 +46,40 @@ export default class Api {
     })
     .then(this._handleResponse);
   }
+
+
+  addCard({name, link}) {
+    return fetch(`${this._address}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify({ name, link })
+    })
+    .then(this._handleResponse);
+  }
+
+
+  _setLike(id) {
+    return fetch(`${this._address}/cards/${id}/likes`, {
+      method: 'PUT',
+      headers: this._headers,
+    })
+    .then(this._handleResponse);
+  }
+
+  _removeLike(id) {
+    return fetch(`${this._address}/cards/${id}/likes`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(this._handleResponse);
+  }
+
+  toggleLike({cardId, isLike}) {
+    if (isLike === true) {
+      return this._removeLike(cardId)
+    } else {
+     return this._setLike(cardId)
+    }
+  }
+
 }
