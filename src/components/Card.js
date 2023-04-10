@@ -1,6 +1,6 @@
 //Класс Card
 export class Card {
-  constructor(cardData, cardTemplate, handleCardClick, userId, handleLikes) {
+  constructor(cardData, cardTemplate, handleCardClick, userId, handleLikes, popupDelOpen) {
     this._cardTemplate = cardTemplate;
     this._cardData = cardData;
     this._handleCardClick = handleCardClick;
@@ -8,6 +8,9 @@ export class Card {
     this._isLike = cardData.likes.some(like => like._id === userId);
     this._cardId = cardData._id;
     this._handleLikes = handleLikes;
+    this._userOwner = cardData.owner._id === userId;
+    this._popupDelOpen = popupDelOpen;
+    // console.log(this._userOwner)
   }
 
   //Шаблон карточки
@@ -55,8 +58,8 @@ export class Card {
     return {cardId: this._cardId, isLike: this._isLike}
   }
 
-  _handleRemoveCard() {
-    this._card.remove();
+  _handleRemoveCard = () => {
+    this._popupDelOpen(this._cardId, this._card)
   }
 
   // _handleLikeClick() {
@@ -68,9 +71,13 @@ export class Card {
       this._handleCardClick(this._cardData)
     );
 
-    this._cardTrashButton.addEventListener("click", () =>
-      this._handleRemoveCard()
-    );
+    // this._cardTrashButton.addEventListener("click", () =>
+    //   this._handleRemoveCard()
+    // );
+
+    if(this._userOwner) {
+      this._cardTrashButton.addEventListener('click', this._handleRemoveCard)
+    }else {this._cardTrashButton.remove()}
 
     // this._cardLike.addEventListener("click", () => {
     //   this._handleLikeClick();

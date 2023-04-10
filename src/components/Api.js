@@ -82,4 +82,13 @@ export default class Api {
     }
   }
 
+  deleteCards(cardId) {
+    return fetch(`${this._address}/cards/${cardId}`, {
+      method: 'DELETE',
+      headers: this._headers,
+    })
+    .then(this._handleResponse);
+  }
+
+
 }
