@@ -65,8 +65,12 @@ export class Card {
   }
 
   _handleRemoveCard = () => {
-    this._popupDelOpen(this._cardId, this._card);
+    this._popupDelOpen(this._cardId, this);
   };
+
+  deleteCard() {
+    this._card.remove();
+  }
 
   _setEventListeners() {
     this._cardPhoto.addEventListener("click", () =>

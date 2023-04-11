@@ -77,10 +77,15 @@ popupDelCardClass.setEventListeners();
 
 function cardsDelete(evt, { cardId, card }) {
   evt.preventDefault();
-  api.deleteCards(cardId).then(() => {
-    card.remove();
-    popupDelCardClass.close();
-  });
+  api
+    .deleteCards(cardId)
+    .then(() => {
+      card.deleteCard();
+      popupDelCardClass.close();
+    })
+    .catch((err) =>
+      console.log(`Ошибка изменения данных пользователя: ${err}`)
+    );
 }
 
 function handleCardClick(cardData) {
@@ -156,7 +161,12 @@ function submitAvatarFormHandler(evt, { avatar }) {
 }
 
 function handleLikes(card) {
-  api.toggleLike(card.getInfo()).then((res) => card.updateLikes(res));
+  api
+    .toggleLike(card.getInfo())
+    .then((res) => card.updateLikes(res))
+    .catch((err) =>
+      console.log(`Ошибка изменения данных пользователя: ${err}`)
+    );
 }
 
 //слушатель на аватарке
